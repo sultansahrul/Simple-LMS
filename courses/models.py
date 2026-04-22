@@ -27,8 +27,19 @@ class Course(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     instructor = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'role': 'instructor'})
     
+    class Meta:
+        indexes = [
+            # models.Index sejajar 8 spasi dari kiri (di dalam Meta)
+            models.Index(fields=['category'], name='idx_course_category'),
+            models.Index(fields=['instructor'], name='idx_course_instructor'),
+        ]
+    
     objects = CourseQuerySet.as_manager()
-
+    class Meta:
+        indexes = [
+            models.Index(fields=['category'], name='idx_course_category'),
+            models.Index(fields=['instructor'], name='idx_course_instructor'),
+        ]
 class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
     title = models.CharField(max_length=200)
