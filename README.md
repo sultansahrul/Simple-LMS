@@ -1,7 +1,7 @@
-# Simple LMS - Progress 1: Docker & Django Foundation
-
 **Nama:** Sultan Sahrul Abdullah  
 **Mata Kuliah:** Pemrograman Sisi Server
+
+# Simple LMS - Progress 1: Docker & Django Foundation
 
 Proyek ini adalah implementasi tahap awal (Progress 1) untuk membangun Simple LMS. Fokus utama pada tahapan ini adalah melakukan setup *environment development* menggunakan Docker, konfigurasi Django, dan menghubungkannya dengan database PostgreSQL.
 
@@ -45,9 +45,6 @@ Konfigurasi koneksi dan pengaturan rahasia disimpan dalam file `.env`. Berikut a
 
 
 # Simple LMS - Progress 2: Database Design & ORM Implementation
-
-**Nama:** Sultan Sahrul Abdullah  
-**Mata Kuliah:** Pemrograman Sisi Server
 
 Progress 2 ini berfokus pada perancangan skema database menggunakan Django ORM, implementasi relasi antar model, konfigurasi Django Admin, dan penerapan teknik optimasi query untuk efisiensi sistem.
 
@@ -97,3 +94,85 @@ Akses Panel Admin: **[http://localhost:8000/admin](http://localhost:8000/admin)*
 
 ### 2. Bukti Optimasi Query (N+1 Solution)
 ![Query Optimization](img/query-demo.png)
+
+
+## 🚀 Progress 3: REST API & Authentication System
+
+Repositori ini berisi implementasi Progress 3 untuk membangun REST API lengkap menggunakan Django Ninja, dilengkapi dengan JWT authentication, Role-Based Access Control (RBAC), dan validasi schema menggunakan Pydantic.
+
+---
+
+## 🎯 Learning Objectives Terpenuhi
+- [x] Membuat REST API dengan Django Ninja
+- [x] Schema validation menggunakan Pydantic
+- [x] JWT Authentication implementation
+- [x] Role-Based Access Control (RBAC)
+- [x] API documentation dengan Swagger
+
+---
+
+## 📦 Deliverables & Fitur
+
+### 1. API Endpoints Terdaftar
+Berikut adalah daftar endpoint yang telah diimplementasikan beserta validasi *role* dan *ownership*-nya:
+
+**Authentication:**
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login (return JWT tokens)
+- `POST /api/auth/refresh` - Refresh access token
+- `GET /api/auth/me` - Get current user
+- `PUT /api/auth/me` - Update profile
+
+**Courses (Public):**
+- `GET /api/courses` - List courses (with pagination & filters)
+- `GET /api/courses/{id}` - Course detail
+
+**Courses (Protected):**
+- `POST /api/courses` - Create course (Role: `@is_instructor`)
+- `PATCH /api/courses/{id}` - Update course (Validation: *Owner Only*)
+- `DELETE /api/courses/{id}` - Delete course (Role: `@is_admin`)
+
+**Enrollments:**
+- `POST /api/enrollments` - Enroll to course (Role: `@is_student`)
+- `GET /api/enrollments/my-courses` - My enrolled courses
+- `POST /api/enrollments/{id}/progress` - Mark lesson complete
+
+### 2. Authentication System
+- Implementasi JWT token generation (Access & Refresh tokens).
+- Token validation menggunakan Global Middleware (`HttpBearer`).
+- Keamanan password menggunakan algoritma hashing bawaan Django (PBKDF2/Bcrypt).
+
+### 3. Permission System (RBAC)
+- Validasi role dilakukan di level endpoint untuk membedakan akses instruktur, admin, dan siswa.
+- Validasi *ownership* diterapkan pada endpoint Update Course, memastikan hanya instruktur pembuat kursus yang dapat mengedit datanya.
+
+### 4. Schema Validation
+- Semua request dan response API telah divalidasi secara ketat menggunakan **Pydantic Schemas** (`ModelSchema` dan `Schema`).
+
+---
+
+## 📸 API Documentation & Testing
+
+### Swagger UI
+Dokumentasi interaktif Swagger otomatis ter-generate dan dapat diakses di: **`/api/docs`**
+
+![Swagger UI Documentation](img/swagger-docs.png)
+
+### Postman Collection
+Untuk pengujian API secara menyeluruh (Register, Login, CRUD), *Postman Collection* telah disediakan dalam repository ini. Silakan *import* file berikut ke aplikasi Postman:
+👉 **`simple_lms_postman.json`**
+
+---
+
+## 🚀 Cara Menjalankan Project (Local/Docker)
+
+1. **Jalankan Container:**
+   ```bash
+   docker compose up -d
+   ```
+2. **Jalankan Migrasi Database:**
+   ```bash
+   docker compose exec web python manage.py migrate
+   ```
+3. **Akses Swagger UI:**
+   Buka browser dan navigasikan ke `http://localhost:8000/api/docs` untuk mulai menguji API.
