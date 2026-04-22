@@ -1,0 +1,145 @@
+[
+{
+  "model": "courses.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$oNC4RXwly0fLJC05hNLhlW$Hiz+3cS9IdNqR9PqWOxvnvWH6sQdxdm6rb+MH+8IPY0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "pak_sultan",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-22T17:09:17.420Z",
+    "role": "instructor",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "courses.category",
+  "pk": 1,
+  "fields": {
+    "name": "Backend Development",
+    "parent": null
+  }
+},
+{
+  "model": "courses.category",
+  "pk": 2,
+  "fields": {
+    "name": "Mobile Apps",
+    "parent": null
+  }
+},
+{
+  "model": "courses.category",
+  "pk": 3,
+  "fields": {
+    "name": "Data Science",
+    "parent": null
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 1,
+  "fields": {
+    "title": "Belajar Docker Pro",
+    "description": "Deskripsi kursus otomatis",
+    "category": 1,
+    "instructor": 1
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 2,
+  "fields": {
+    "title": "Mastering Django",
+    "description": "Deskripsi kursus otomatis",
+    "category": 1,
+    "instructor": 1
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 3,
+  "fields": {
+    "title": "Flutter Basic",
+    "description": "Deskripsi kursus otomatis",
+    "category": 2,
+    "instructor": 1
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 4,
+  "fields": {
+    "title": "Analisis Data Python",
+    "description": "Deskripsi kursus otomatis",
+    "category": 3,
+    "instructor": 1
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 5,
+  "fields": {
+    "title": "Sistem Terdistribusi",
+    "description": "Deskripsi kursus otomatis",
+    "category": 1,
+    "instructor": 1
+  }
+},
+{
+  "model": "courses.lesson",
+  "pk": 1,
+  "fields": {
+    "course": 1,
+    "title": "Pendahuluan",
+    "content": "Isi materi",
+    "order": 1
+  }
+},
+{
+  "model": "courses.lesson",
+  "pk": 2,
+  "fields": {
+    "course": 2,
+    "title": "Pendahuluan",
+    "content": "Isi materi",
+    "order": 1
+  }
+},
+{
+  "model": "courses.lesson",
+  "pk": 3,
+  "fields": {
+    "course": 3,
+    "title": "Pendahuluan",
+    "content": "Isi materi",
+    "order": 1
+  }
+},
+{
+  "model": "courses.lesson",
+  "pk": 4,
+  "fields": {
+    "course": 4,
+    "title": "Pendahuluan",
+    "content": "Isi materi",
+    "order": 1
+  }
+},
+{
+  "model": "courses.lesson",
+  "pk": 5,
+  "fields": {
+    "course": 5,
+    "title": "Pendahuluan",
+    "content": "Isi materi",
+    "order": 1
+  }
+}
+]
